@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Exception doInBackground(Integer... params) {
             try {
-                URL url = new URL("http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");
+                URL url = new URL("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 
                 //not providing support for namespaces
@@ -107,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                     //If start tag, whats the name of the tag?
                     if (eventType == XmlPullParser.START_TAG) {
-                    if (xpp.getName().equalsIgnoreCase("item")){
+
+                        //If the tag is an item, we are now inside where we want to be
+                        if (xpp.getName().equalsIgnoreCase("item")){
                         insideItem = true;
                     }
                     else if (xpp.getName().equalsIgnoreCase("title")){
@@ -121,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")){
+                else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item"))
+                {
                     insideItem=false;
                 }
                     eventType=xpp.next();
