@@ -1,19 +1,12 @@
 package com.example.finalproject;
 
 
-import static android.media.CamcorderProfile.get;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import android.util.Xml;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
@@ -74,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //
     public class ProcessInBackground extends AsyncTask<Integer, Void, Exception> {
 
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
@@ -93,16 +87,26 @@ public class MainActivity extends AppCompatActivity {
                 URL url = new URL("http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 
+                //not providing support for namespaces
                 factory.setNamespaceAware(false);
+
+                //creating a new instance of an xml pull parser to extract data from our XML document
                 XmlPullParser xpp = factory.newPullParser();
 
+                //setting the encoding type to be read through the input stream that creates a new connection
                 xpp.setInput(getInputStream(url), "UTF_8");
 
+
                 boolean insideItem = false;
-                int eventType = xpp.getEventType();
+                int eventType = xpp.getEventType(); //returns the tag of the current event
+
+                //gonna run through all the elements in the document until its not the end of the document
+                //when we reach the end, while loop stops
 
                 while (eventType != XmlPullParser.END_DOCUMENT)
-                {if (eventType == XmlPullParser.START_TAG) {
+                {
+                    //If start tag, whats the name of the tag?
+                    if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equalsIgnoreCase("item")){
                         insideItem = true;
                     }
