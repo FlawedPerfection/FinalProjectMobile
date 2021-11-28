@@ -11,44 +11,8 @@
         layout="@layout/toolbar" />
 
     <ListView
-        android:id="@+id/listViewNews"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:background="@color/purple_200"></ListView>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_row="4"
-        android:layout_column="0"
-        android:gravity="center" />
-    <TextView
-        android:id="@+id/descriptionText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_row="4"
-        android:layout_column="0"
-        android:gravity="center" />
-    <TextView
-        android:id="@+id/currentpubDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_row="4"
-        android:gravity="center" />
-
-
-
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_row="5"
-        android:layout_column="0"
-        android:layout_gravity="center"
-        android:visibility="invisible" />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
