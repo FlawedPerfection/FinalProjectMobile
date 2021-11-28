@@ -4,16 +4,15 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <ListView
         android:id="@+id/listViewNews"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:background="#80DBF9">
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-    </ListView>
+        android:background="@color/purple_200"></ListView>
 
 </LinearLayout>

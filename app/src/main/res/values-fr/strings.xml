@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RSS FEED</string>
+    <string name="datePublished">Date publiée</string>
+    <string name="LinkToRead">Lien pour lire l\'article complet</string>
+    <string name="email">Entrez courriel</string>
+    <string name="email_message">Entrez votre courriel</string>
+    <string name="pword">mot de pass</string>
+    <string name="ButtonText">Connexion</string>
+    <string name="article_description">Description d\'article</string>
+    <string name="title">Titre</string>
+</resources>
