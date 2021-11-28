@@ -16,7 +16,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,7 +51,7 @@ public class CBCParser extends AppCompatActivity {
     }
 
     class ListParser extends AsyncTask<String, Integer, String> {
-        private static final String ACTIVITY_NAME = "CbcParser";
+        private static final String ACTIVITY_NAME = "rss_activity";
         private String currentTitle;
         private String currentDescription;
         private String currentpubDate;
@@ -137,10 +136,10 @@ public class CBCParser extends AppCompatActivity {
         public void onPostExecute(String fromDoInBackground) {
             Log.e(ACTIVITY_NAME, "In onPostExecute");
 
-            title.setText("The current temperature is: " + currentTitle );
-            description.setText("The minimum temperature today is: " + currentDescription);
-            link.setText("The maximum temperature today is: " + currentLink);
-            pubDate.setText("The current UV today is: " + currentpubDate);
+            title.setText( currentTitle );
+            description.setText(currentDescription);
+            link.setText(currentLink);
+            pubDate.setText(currentpubDate);
 
             progressBar.setVisibility(View.INVISIBLE);
 

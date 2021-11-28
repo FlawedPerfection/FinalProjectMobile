@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
 
-
+        <activity android:name=".CBCParser"
+            android:exported="true"/>
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
