@@ -1,160 +1,77 @@
 package com.example.finalproject;
 
+        import android.content.Context;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.os.Bundle;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.Toast;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toolbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-
+        import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    ListView listViewNews;
-    //Making our arraylist to store our News Items from the RSS feed
-    ArrayList<String> titles;
-    ArrayList<String> links;
 
-    Toolbar toolbar;
-
-    private URL url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
 
+        SharedPreferences prefs = this.getSharedPreferences(
+                "com.example.androidlabs", Context.MODE_PRIVATE);
+        String email = prefs.getString("Email", "");
+        EditText text = findViewById(R.id.enterEmail);
+        text.setText(email);
 
-        toolbar = findViewById(R.id.toolbar);
+        Button loginButton = findViewById(R.id.loginButton);
 
-        listViewNews = findViewById(R.id.listViewNews);
-        titles = new ArrayList<>();
-        links = new ArrayList<>();
-
-        listViewNews.setOnItemClickListener((adapterView, view, position, l) -> {
-            Uri uri = Uri.parse(links.get(position));
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+        loginButton.setOnClickListener(click ->
+        {
+            Intent goToProfile = new Intent(MainActivity.this, RssActivity.class);
+            goToProfile.putExtra("EMAIL", text.getText().toString());
+            startActivityForResult(goToProfile, 456);
+            Toast.makeText(getBaseContext(), "You've logged in" , Toast.LENGTH_SHORT ).show();
         });
-
-
-
-        new ProcessInBackground().execute();
     }
 
-
-    public InputStream getInputStream(URL url) {
-        try {
-            return url.openConnection().getInputStream();
-        } catch (IOException e) {
-            return null;
-        }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
     }
 
-    //
-    public class ProcessInBackground extends AsyncTask<Integer, Void, Exception> {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences prefs = this.getSharedPreferences(
+                "Login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        EditText email = findViewById(R.id.enterEmail);
+        edit.putString("Email", email.getText().toString());
+        edit.commit();
+    }
 
-        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        Exception exception = null;
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog.setMessage("Loading rss feed");
-            progressDialog.show();
-        }
-
-        @Override
-        protected Exception doInBackground(Integer... params) {
-            try {
-                URL url = new URL("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");
-                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-
-                //not providing support for namespaces
-                factory.setNamespaceAware(false);
-
-                //creating a new instance of an xml pull parser to extract data from our XML document
-                XmlPullParser xpp = factory.newPullParser();
-
-                //setting the encoding type to be read through the input stream that creates a new connection
-                xpp.setInput(getInputStream(url), "UTF_8");
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
 
-                boolean insideItem = false;
-                int eventType = xpp.getEventType(); //returns the tag of the current event
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
-                //gonna run through all the elements in the document until its not the end of the document
-                //when we reach the end, while loop stops
-
-                while (eventType != XmlPullParser.END_DOCUMENT)
-                {
-                    //If start tag, whats the name of the tag?
-                    if (eventType == XmlPullParser.START_TAG) {
-
-                        //If the tag is an item, we are now inside where we want to be
-                        if (xpp.getName().equalsIgnoreCase("item")){
-                        insideItem = true;
-                    }
-                    else if (xpp.getName().equalsIgnoreCase("title")){
-
-                        if (insideItem) {
-                            titles.add(xpp.nextText());
-                        }
-                    } else if (xpp.getName().equalsIgnoreCase("link")){
-                        if (insideItem){
-                            links.add(xpp.nextText());
-                        }
-                    }
-                }
-                else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item"))
-                {
-                    insideItem=false;
-                }
-                    eventType=xpp.next();
-                }
-
-            } catch (MalformedURLException e) {
-
-                exception = e;
-            } catch (XmlPullParserException e) {
-                exception = e;
-            } catch (IOException e) {
-                exception = e;
-            }
-            return exception;
-        }
-
-        @Override
-        protected void onPostExecute(Exception s) {
-            super.onPostExecute(s);
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, titles);
-            listViewNews.setAdapter(adapter);
-
-            progressDialog.dismiss();
-        }
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
 
 }
-
-
-
-

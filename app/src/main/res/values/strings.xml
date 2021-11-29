@@ -2,7 +2,7 @@
     <string name="app_name">RSS FEED</string>
     <string name="datePublished">Date Published</string>
     <string name="LinkToRead">Link to read full article</string>
-    <string name="email">EnterEmail</string>
+    <string name="email">Enter Email</string>
     <string name="email_message">Enter your email</string>
     <string name="pword">password</string>
     <string name="ButtonText">Login</string>
