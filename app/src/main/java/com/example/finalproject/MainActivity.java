@@ -12,6 +12,8 @@ import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -21,6 +23,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = Uri.parse(links.get(position));
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
+            Snackbar.make(listViewNews, "you clicked on list item "+ position, Snackbar.LENGTH_LONG).show();
         });
 
 
