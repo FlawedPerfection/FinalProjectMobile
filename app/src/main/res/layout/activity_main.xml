@@ -9,7 +9,10 @@
     tools:context=".MainActivity"
     >
 
-    <include layout="@layout/toolbar" />
+    <include
+        layout="@layout/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 
     <ListView
         android:id="@+id/listViewNews"

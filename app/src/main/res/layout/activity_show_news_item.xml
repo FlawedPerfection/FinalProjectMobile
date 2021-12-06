@@ -10,10 +10,19 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp" >
 
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+           />
+
         <TextView
             android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="50dp"
             android:text="@string/title"
             android:textSize="30dp"
             android:textStyle="bold" />

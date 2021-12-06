@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 

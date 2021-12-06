@@ -26,6 +26,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/guywaving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/waveguy"
+        app:layout_constraintBottom_toBottomOf="@+id/NewToolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/NewToolbar"></ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
