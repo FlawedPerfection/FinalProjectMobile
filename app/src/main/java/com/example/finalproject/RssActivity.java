@@ -11,8 +11,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -64,13 +67,25 @@ public class RssActivity extends AppCompatActivity {
            String link = links.get(position);
            String description = articleDescription.get(position);
            String date = datePublished.get(position);
+           AlertDialog.Builder alertDialogueBuilder = new AlertDialog.Builder(this);
+           alertDialogueBuilder.setTitle("Going to "+ title + "information page")
+                   .setPositiveButton("leave", (click, arg) -> {
+                       Intent intent = new Intent(RssActivity.this, DisplayInformation.class);
+                       intent.putExtra("TITLE", title);
+                       intent.putExtra("LINK",link);
+                       intent.putExtra("DESCRIPTION",description);
+                       intent.putExtra("DATEPUBLISHED",date);
+                       startActivity(intent);
+                   })
+                   .create().show();
 
-          Intent intent = new Intent(RssActivity.this, DisplayInformation.class);
+
+          /*Intent intent = new Intent(RssActivity.this, DisplayInformation.class);
            intent.putExtra("TITLE", title);
            intent.putExtra("LINK",link);
            intent.putExtra("DESCRIPTION",description);
            intent.putExtra("DATEPUBLISHED",date);
-           startActivity(intent);
+           startActivity(intent);*/
 
 
 
