@@ -3,6 +3,7 @@ package com.example.finalproject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -53,10 +54,12 @@ public class RssActivity extends AppCompatActivity {
 
 
        listViewNews.setOnItemClickListener((adapterView, view, position, l) -> {
-          /*  Uri uri = Uri.parse(links.get(position));
+           Uri uri = Uri.parse(links.get(position));
            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
-        */
+               });
+
+       listViewNews.setOnItemLongClickListener((adapterView, view, position, l) -> {
            String title = titles.get(position);
            String link = links.get(position);
            String description = articleDescription.get(position);
@@ -73,7 +76,8 @@ public class RssActivity extends AppCompatActivity {
 
            Toast.makeText(getBaseContext(), title , Toast.LENGTH_SHORT ).show();
 
-        });
+           return false;
+       });
 
 
 
