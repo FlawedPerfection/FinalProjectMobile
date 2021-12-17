@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.myToolbar);
 
         listViewNews = findViewById(R.id.listViewNews);
         titles = new ArrayList<>();
