@@ -46,7 +46,7 @@ public class RssActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        toolbar = findViewById(R.id.NewToolbar);
+        toolbar = findViewById(R.id.myToolbar);
 
         listViewNews = findViewById(R.id.listViewNews);
         titles = new ArrayList<>();

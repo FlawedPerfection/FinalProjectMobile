@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(click ->
         {
-            Intent goToProfile = new Intent(MainActivity.this, RssActivity.class);
+            Intent goToProfile = new Intent(this, ToolbarActivity.class);
             goToProfile.putExtra("EMAIL", text.getText().toString());
             startActivityForResult(goToProfile, 456);
             Toast.makeText(getBaseContext(), "You've logged in" , Toast.LENGTH_SHORT ).show();

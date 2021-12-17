@@ -11,7 +11,7 @@
         android:paddingRight="16dp" >
 
         <include
-            layout="@layout/toolbar"
+            layout="@layout/toolbar_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"

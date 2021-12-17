@@ -8,4 +8,6 @@
     <string name="ButtonText">Login</string>
     <string name="article_description">Article Description</string>
     <string name="title">Title</string>
+    <string name="open" translatable="false">open</string>
+    <string name="close" translatable="false">close</string>
 </resources>
